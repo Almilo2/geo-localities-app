@@ -1,76 +1,52 @@
 <template>
   <div class="min-h-screen bg-gray-50">
+    <DetailPageHeader :pending="pending" :error="error">
 
-    <header class="bg-stone-800 border-b border-stone-700">
-      <div class="mx-auto max-w-3xl px-4 py-4">
-        <NuxtLink to="/" class="text-sm text-stone-300 hover:text-stone-100">
-          Back to list
-        </NuxtLink>
-      </div>
-    </header>
-
-    <main class="mx-auto max-w-3xl px-4 py-6">
-
-      <div v-if="pending" class="space-y-4">
-        <div class="h-8 w-2/3 rounded-lg bg-gray-200 animate-pulse" />
-        <div class="h-4 w-1/3 rounded-lg bg-gray-200 animate-pulse" />
-        <div class="h-64 rounded-xl bg-gray-200 animate-pulse" />
-      </div>
+      <LocalityHeader
+          :id="locality.id"
+          :name="locality.name"
+          :name-en="locality.name_en"
+      />
 
       <div
-          v-else-if="error"
-          class="rounded border border-red-200 bg-red-50 p-6 text-red-700"
+          v-if="locality.latitude && locality.longitude"
+          class="mb-6 overflow-hidden rounded-xl border border-gray-200"
       >
-        Could not load this locality. It may not exist.
-      </div>
-
-      <div v-else-if="locality">
-
-        <LocalityHeader
-            :id="locality.id"
-            :name="locality.name"
-            :name-en="locality.name_en"
-        />
-
-        <div
-            v-if="locality.latitude && locality.longitude"
-            class="mb-6 overflow-hidden rounded-xl border border-gray-200"
-        >
-          <LocalityMap
-              :latitude="locality.latitude"
-              :longitude="locality.longitude"
-              :label="locality.name_en || locality.name || 'Locality'"
-          />
-        </div>
-        <div
-            v-else
-            class="mb-6 rounded border border-dashed border-gray-300
-                 p-8 text-center text-sm text-gray-400"
-        >
-          No coordinates available for this locality
-        </div>
-
-        <LocalityDetails
-            :number="locality.number"
-            :country-name="countryName"
-            :elevation="locality.elevation"
-            :depth="locality.depth"
+        <LocalityMap
             :latitude="locality.latitude"
             :longitude="locality.longitude"
-            :stratigraphy-top="locality.stratigraphy_top_text"
-            :stratigraphy-base="locality.stratigraphy_base_text"
-            :last-updated="formattedDate"
-            :remarks="locality.remarks"
-            :remarks-location="locality.remarks_location"
+            :label="locality.name_en || locality.name || 'Locality'"
         />
-
       </div>
-    </main>
+      <div
+          v-else
+          class="mb-6 rounded border border-dashed border-gray-300
+               p-8 text-center text-sm text-gray-400"
+      >
+        No coordinates available for this locality
+      </div>
+
+      <LocalityDetails
+          :number="locality.number"
+          :country-name="countryName"
+          :elevation="locality.elevation"
+          :depth="locality.depth"
+          :latitude="locality.latitude"
+          :longitude="locality.longitude"
+          :stratigraphy-top="locality.stratigraphy_top_text"
+          :stratigraphy-base="locality.stratigraphy_base_text"
+          :last-updated="formattedDate"
+          :remarks="locality.remarks"
+          :remarks-location="locality.remarks_location"
+      />
+
+    </DetailPageHeader>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Locality, Country } from '~/types/locality'
+import DetailPageHeader from "~/components/DetailPageHeader.vue";
 
 const route = useRoute()
 const id = route.params.id as string
