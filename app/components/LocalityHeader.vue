@@ -1,6 +1,6 @@
 <template>
   <div class="mb-6">
-    <p class="text-xs text-blue-500 uppercase tracking-wide mb-1">
+    <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">
       Locality #{{ id }}
     </p>
     <h1 class="text-2xl font-bold text-gray-900">
