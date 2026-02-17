@@ -5,15 +5,21 @@
              flex flex-col gap-4
              sm:flex-row sm:items-center sm:justify-between"
     >
+
       <div>
         <h1 class="text-xl font-bold text-stone-50 tracking-tight">
           Geo Localities
         </h1>
         <p class="text-xs text-stone-500 mt-0.5">
-          Estonian Geological Survey
+          Department of Geology, TalTech
         </p>
       </div>
-      <SearchBar :model-value="searchQuery" @search="$emit('search', $event)" />
+
+      <SearchBar
+          :model-value="searchQuery"
+          @search="$emit('search', $event)"
+      />
+
     </div>
   </header>
 </template>

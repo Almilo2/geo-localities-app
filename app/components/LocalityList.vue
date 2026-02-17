@@ -8,16 +8,14 @@
 
     <div
         v-if="error"
-        class="mb-4 rounded border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+        class="mb-4 rounded border border-red-200
+             bg-red-50 p-4 text-sm text-red-700"
     >
       {{ error }}
       <button class="ml-2 underline" @click="$emit('retry')">Retry</button>
     </div>
 
-    <div
-        v-else-if="loading"
-        class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div v-else-if="loading" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <div
           v-for="n in 12"
           :key="n"
@@ -33,10 +31,7 @@
       <p class="text-sm mt-1">Try a different search term</p>
     </div>
 
-    <div
-        v-else
-        class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div v-else class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <LocalityCard
           v-for="locality in localities"
           :key="locality.id"
