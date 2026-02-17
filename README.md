@@ -1,75 +1,31 @@
-# Nuxt Minimal Starter
+# Geo Localities App
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a web app I built as part of a frontend developer assignment. 
+It lets you browse and search through geological localities from the Estonian Geological Survey database, which has over 13,000 entries.
 
-## Setup
+## What it does
 
-Make sure to install dependencies:
+You land on a list of localities fetched from a public API. 
+You can search by name and the results update as you type. 
+The list is paginated so it doesn't load everything at once. If you click on any locality, it takes you to a detail page where you can see more information about it — and if the locality has coordinates, there's an interactive map showing exactly where it is.
 
-```bash
-# npm
+## Tech choices
+
+I went with Nuxt 3 because it gives a solid structure for Vue apps and handles things like server-side rendering and data fetching cleanly. 
+I used Tailwind CSS for styling since it makes it easy to keep things consistent and responsive without writing a lot of custom CSS. 
+TypeScript is used throughout so the API responses are properly typed. 
+The map is powered by Leaflet with OpenStreetMap tiles — no API key needed.
+
+## How to run it locally
+
+Make sure you have Node.js installed, then:
+
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
 
-# pnpm
-pnpm dev
+Open http://localhost:3000 in your browser and you should see the app.
 
-# yarn
-yarn dev
+## Data source
 
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+All data comes from the public Estonian Geological Survey API:
+https://rwapi.geoloogia.info/api/v1/public/localities/

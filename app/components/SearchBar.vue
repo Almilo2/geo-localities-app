@@ -4,7 +4,9 @@
         v-model="localQuery"
         type="text"
         placeholder="Search by name..."
-        class="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
+        class="w-full rounded border border-gray-300
+             bg-white px-3 py-2 text-sm
+             focus:border-gray-500 focus:outline-none"
         @input="onInput"
     />
   </div>
