@@ -1,5 +1,7 @@
 # Geo Localities App
 
+**Live demo:** https://geo-localities-app.vercel.app/
+
 This is a web app I built as part of a frontend developer assignment. 
 It lets you browse and search through geological localities from the Estonian Geological Survey database, which has over 13,000 entries.
 
